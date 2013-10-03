@@ -438,7 +438,7 @@
       if (!/body/i.test(this.settings.$target.selector)) {
           var
             topAdjustment = this.settings.tipSettings.tipAdjustmentY ? parseInt(this.settings.tipSettings.tipAdjustmentY) : 0,
-            leftAdjustment = .this.settings.tipSettings.tipAdjustmentX ? parseInt(this.settings.tipSettings.tipAdjustmentX) : 0;
+            leftAdjustment = this.settings.tipSettings.tipAdjustmentX ? parseInt(this.settings.tipSettings.tipAdjustmentX) : 0;
 
           if (this.bottom()) {
             var leftOffset = this.settings.$target.offset().left;
