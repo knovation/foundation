@@ -436,34 +436,37 @@
       }
 
       if (!/body/i.test(this.settings.$target.selector)) {
+          var
+            topAdjustment = this.settings.tipSettings.tipAdjustmentY ? parseInt(this.settings.tipSettings.tipAdjustmentY) : 0,
+            leftAdjustment = .this.settings.tipSettings.tipAdjustmentX ? parseInt(this.settings.tipSettings.tipAdjustmentX) : 0;
 
           if (this.bottom()) {
             var leftOffset = this.settings.$target.offset().left;
             if (Foundation.rtl) {
-              leftOffset = this.settings.$target.offset().width - this.settings.$next_tip.width() + leftOffset;
+              leftOffset = this.settings.$target.offset().width - this.settings.$next_tip.width() + leftOffset + leftAdjustment;
             }
             this.settings.$next_tip.css({
-              top: (this.settings.$target.offset().top + nub_height + this.outerHeight(this.settings.$target)),
-              left: leftOffset});
+              top: (this.settings.$target.offset().top + nub_height + this.outerHeight(this.settings.$target) + topAdjustment),
+              left: leftOffset + leftAdjustment});
 
             this.nub_position($nub, this.settings.tipSettings.nubPosition, 'top');
 
           } else if (this.top()) {
             var leftOffset = this.settings.$target.offset().left;
             if (Foundation.rtl) {
-              leftOffset = this.settings.$target.offset().width - this.settings.$next_tip.width() + leftOffset;
+              leftOffset = this.settings.$target.offset().width - this.settings.$next_tip.width() + leftOffset + leftAdjustment;
             }
             this.settings.$next_tip.css({
-              top: (this.settings.$target.offset().top - this.outerHeight(this.settings.$next_tip) - nub_height),
-              left: leftOffset});
+              top: (this.settings.$target.offset().top - this.outerHeight(this.settings.$next_tip) - nub_height + topAdjustment),
+              left: leftOffset + leftAdjustment});
 
             this.nub_position($nub, this.settings.tipSettings.nubPosition, 'bottom');
 
           } else if (this.right()) {
 
             this.settings.$next_tip.css({
-              top: this.settings.$target.offset().top,
-              left: (this.outerWidth(this.settings.$target) + this.settings.$target.offset().left + nub_width)});
+              top: this.settings.$target.offset().top + topAdjustment,
+              left: (this.outerWidth(this.settings.$target) + this.settings.$target.offset().left + nub_width + leftAdjustment)});
 
             this.nub_position($nub, this.settings.tipSettings.nubPosition, 'left');
 
